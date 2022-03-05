@@ -19,14 +19,14 @@ class Button():
 
 class ControllerDeepCopy(ControllerInterface):
 
-    def __init__(self, name: str, hardwaer: list, range: int, button: Button):
+    def __init__(self, name: str, hardwaer: list, range: int):
         self.name = name
         self.hardwaer = hardwaer
         self.range = range
-        self.button = button
+        self.button = Button(self.name, "clik")
         self.set_name_button()
-        self.name_button = button.name
-        self.button_i = button.i
+        self.button_name = self.button.name
+        self.button_i = self.button.i
 
     def set_name_button(self):
         print("changed name button")
@@ -38,27 +38,27 @@ class ControllerDeepCopy(ControllerInterface):
 
 class ControllerShallowCopy(ControllerInterface):
 
-    def __init__(self, name: str, hardwaer: list, range: int, button: Button):
+    def __init__(self, name: str, hardwaer: list, range: int):
         self.name = name
         self.hardwaer = hardwaer
         self.range = range
-        self.button = button
+        self.button = Button(self.name, "clik")
         self.set_name_button()
-        self.name_button = button.name
-        self.button_i = button.i
+        self.button_name = ""
+        self.button_i = self.button.i
 
     def set_name_button(self):
         print("changed name button")
         self.button.name = f"Button {self.name}"
+        self.button_name = self.button.name
 
     def clone(self):
         return copy.copy(self)
 
 
 def chek_clon_metod():
-    tumbler_button = Button(name="tumblet buttom", clik="clik")
 
-    a = ControllerShallowCopy("A-Controller", ["corpys", "button"], 2, tumbler_button)
+    a = ControllerShallowCopy("A-Controller", ["corpys", "button"], 2)
 
     b = a.clone()
     b.button_i = "i B controller"
@@ -67,8 +67,7 @@ def chek_clon_metod():
     b.hardwaer.append("newnewnew")
     b.range = 100000
 
-    c = ControllerDeepCopy("C-Controller", [1, 2], 5, tumbler_button)
-    c.name = "new Name"
+    c = ControllerDeepCopy("C-Controller", [1, 2], 5)
 
     d = c.clone()
     d.name = "D-Controller"
@@ -76,12 +75,9 @@ def chek_clon_metod():
     d.hardwaer.append("newnewnew")
     d.range = 100000
 
-    # проверяю изменения в аргументе hardwaer: работает. При copy.copy изменяет аргумент в двух классах
-    # при copy.deepcopy только в одном
     print(a.hardwaer, b.hardwaer)
     print(c.hardwaer, d.hardwaer)
 
-    # проверяю изменения в аргументе range: не работает. При copy.copy должно изменить аргумент в двух классах
     print(a.range, b.range)
     print(c.range, d.range)
 
@@ -93,7 +89,7 @@ def chek_clon_metod():
     l = [a, b, c, d]
     for i in l:
         print(
-            f"Button Name: {i.name_button},\n Parameter i: {i.button_i},\n Controller Name: {i.name},\n Memory ID: {i}")
+            f"Controller Name: {i.name},\n Button Name: {i.button_name},\n Parameter i: {i.button_i},\n Memory ID: {i}")
 
 
 if __name__ == '__main__':

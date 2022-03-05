@@ -143,7 +143,6 @@ class Admin(User):
         game.prize.remove(prize)
         print(f"Prize {prize} removed")
 
-
 if __name__ == '__main__':
 
     game = GameWithInt("game")
