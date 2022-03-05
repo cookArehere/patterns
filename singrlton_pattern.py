@@ -15,6 +15,7 @@ class BaseDate(SingletonMeta):
     def geet_some_info(self, id:str):
         return order[id]
 
+
 if __name__ == '__main__':
 
     s1 = BaseDate()
