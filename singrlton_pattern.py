@@ -24,4 +24,4 @@ if __name__ == '__main__':
 
     print(s1.geet_some_info("id_1"))
     print(s2.geet_some_info("id_2"))
-    print(s1 == s2)
+    print(id(s1) == id(s2))
