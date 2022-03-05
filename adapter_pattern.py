@@ -22,7 +22,6 @@ def work_with_str(object: GetStr):
 
 if __name__ == '__main__':
 
-
     get_int = GetInt()
     get_str = GetStr()
     adapter = Adapter(get_int)

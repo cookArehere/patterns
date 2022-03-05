@@ -38,6 +38,7 @@ class CompoundProduct(ProductInterface):
     def remove_product(self, product: ProductInterface):
         self.products.remove(product)
 
+
 if __name__ == '__main__':
 
     dough_ingredients = {"flour": 3.5, "edge": 1, "sugar": 2.1}
